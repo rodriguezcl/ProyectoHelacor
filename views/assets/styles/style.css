@@ -144,7 +144,7 @@ div>.card-img-top{
 }
 
 .card-body:hover{
-  background-color: #198754 !important;
+  background-color: #fb0016 !important;
   color: white !important;
 }
 
@@ -156,6 +156,7 @@ div>.card-img-top{
 #parrafoPreCards{
   padding: 2vh;
   height: 20vh;
+  
 }
 
 .no-text-decoration{
@@ -167,3 +168,19 @@ div>.card-img-top{
 }
 
 
+.cards-container {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards-container > div {
+  flex-basis: calc(100% / 4 - 20px); /* Ancho de las cards en la primera fila */
+  margin: 10px;
+}
+
+@media (max-width: 992px) {
+  /* Estilos para pantallas con ancho máximo de 992px */
+  .cards-container > div {
+    flex-basis: calc(100% / 3 - 20px); /* Ancho de las cards en la segunda fila */
+  }
+}
