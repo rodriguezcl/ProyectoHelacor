@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HelacorLineadeTortaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Idempleado" />
+          </Key>
+          <Property Name="Idempleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="I_Identidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo_I_Identidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="int" />
+          <Property Name="Domiclio" Type="nvarchar" MaxLength="50" />
+          <Property Name="Idpuesto" Type="int" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="date" />
+          <Property Name="Fecha_Operacion" Type="date" />
+          <Property Name="Descripcion_Operacion" Type="nvarchar" MaxLength="500" />
+          <Property Name="Activo" Type="numeric" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="Idmarca" />
+          </Key>
+          <Property Name="Idmarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombremarca" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="Idpais" />
+          </Key>
+          <Property Name="Idpais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_Postal" Type="int" />
+          <Property Name="NombrePais" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Produccion">
+          <Key>
+            <PropertyRef Name="Idproduccion" />
+          </Key>
+          <Property Name="Idproduccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Id_Produccion_Marca_Pais" Type="int" Nullable="false" />
+          <Property Name="Idturno" Type="int" Nullable="false" />
+          <Property Name="Idempleado" Type="int" Nullable="false" />
+          <Property Name="Fecha_Operacion" Type="date" />
+          <Property Name="Descripcion_Operacion" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Produccion_Marca">
+          <Key>
+            <PropertyRef Name="Idproduccion_marca" />
+          </Key>
+          <Property Name="Idproduccion_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idproducto" Type="int" Nullable="false" />
+          <Property Name="Idmarca" Type="int" Nullable="false" />
+          <Property Name="Fecha_Operacion" Type="date" />
+          <Property Name="Descripcion_Operacion" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdEmpleado" Type="int" />
+        </EntityType>
+        <EntityType Name="Produccion_Marca_Pais">
+          <Key>
+            <PropertyRef Name="Id_Produccion_Marca_Pais" />
+          </Key>
+          <Property Name="Id_Produccion_Marca_Pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Idproduccion_marca" Type="int" Nullable="false" />
+          <Property Name="Idpais" Type="int" Nullable="false" />
+          <Property Name="Fecha_Operacion" Type="date" />
+          <Property Name="Descripcion_Operacion" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Idproducto" />
+          </Key>
+          <Property Name="Idproducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Unidad" Type="int" />
+          <Property Name="Peso_Helado" Type="varchar" MaxLength="50" />
+          <Property Name="Peso_Total" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha_Alta" Type="date" />
+          <Property Name="Fecha_Operacion" Type="date" />
+          <Property Name="Producto_Baja" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="Operacion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descripcion_Operacion" Type="nvarchar" MaxLength="500" />
+          <Property Name="IdEmpleado" Type="int" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="Idpuesto" />
+          </Key>
+          <Property Name="Idpuesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_puesto" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="Idturno" />
+          </Key>
+          <Property Name="Idturno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Horario_Inicio" Type="datetime" />
+          <Property Name="Horario_Fin" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="HelacorLineadeTortaModelStoreContainer">
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produccion" EntityType="Self.Produccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produccion_Marca" EntityType="Self.Produccion_Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produccion_Marca_Pais" EntityType="Self.Produccion_Marca_Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HelacorLineadeTortaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Idempleado" />
+          </Key>
+          <Property Name="Idempleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="I_Identidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_I_Identidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="Int32" />
+          <Property Name="Domiclio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Idpuesto" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="DateTime" Precision="0" />
+          <Property Name="Fecha_Operacion" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion_Operacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Decimal" Precision="1" Scale="0" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="Idmarca" />
+          </Key>
+          <Property Name="Idmarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombremarca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="Idpais" />
+          </Key>
+          <Property Name="Idpais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Postal" Type="Int32" />
+          <Property Name="NombrePais" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Produccion">
+          <Key>
+            <PropertyRef Name="Idproduccion" />
+          </Key>
+          <Property Name="Idproduccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_Produccion_Marca_Pais" Type="Int32" Nullable="false" />
+          <Property Name="Idturno" Type="Int32" Nullable="false" />
+          <Property Name="Idempleado" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Operacion" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion_Operacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Produccion_Marca">
+          <Key>
+            <PropertyRef Name="Idproduccion_marca" />
+          </Key>
+          <Property Name="Idproduccion_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idproducto" Type="Int32" Nullable="false" />
+          <Property Name="Idmarca" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Operacion" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion_Operacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdEmpleado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Produccion_Marca_Pais">
+          <Key>
+            <PropertyRef Name="Id_Produccion_Marca_Pais" />
+          </Key>
+          <Property Name="Id_Produccion_Marca_Pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Idproduccion_marca" Type="Int32" Nullable="false" />
+          <Property Name="Idpais" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Operacion" Type="DateTime" Precision="0" />
+          <Property Name="Descripcion_Operacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Idproducto" />
+          </Key>
+          <Property Name="Idproducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Unidad" Type="Int32" />
+          <Property Name="Peso_Helado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Peso_Total" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Alta" Type="DateTime" Precision="0" />
+          <Property Name="Fecha_Operacion" Type="DateTime" Precision="0" />
+          <Property Name="Producto_Baja" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="Operacion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion_Operacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IdEmpleado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="Idpuesto" />
+          </Key>
+          <Property Name="Idpuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_puesto" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Turno">
+          <Key>
+            <PropertyRef Name="Idturno" />
+          </Key>
+          <Property Name="Idturno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Horario_Inicio" Type="DateTime" Precision="3" />
+          <Property Name="Horario_Fin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="HelacorLineadeTortaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" />
+          <EntitySet Name="Produccion" EntityType="Self.Produccion" />
+          <EntitySet Name="Produccion_Marca" EntityType="Self.Produccion_Marca" />
+          <EntitySet Name="Produccion_Marca_Pais" EntityType="Self.Produccion_Marca_Pais" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Puesto" EntityType="Self.Puesto" />
+          <EntitySet Name="Turno" EntityType="Self.Turno" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HelacorLineadeTortaModelStoreContainer" CdmEntityContainer="HelacorLineadeTortaEntities">
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="Idempleado" ColumnName="Idempleado" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="I_Identidad" ColumnName="I_Identidad" />
+                <ScalarProperty Name="Tipo_I_Identidad" ColumnName="Tipo_I_Identidad" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Domiclio" ColumnName="Domiclio" />
+                <ScalarProperty Name="Idpuesto" ColumnName="Idpuesto" />
+                <ScalarProperty Name="Fecha_Alta" ColumnName="Fecha_Alta" />
+                <ScalarProperty Name="Fecha_Operacion" ColumnName="Fecha_Operacion" />
+                <ScalarProperty Name="Descripcion_Operacion" ColumnName="Descripcion_Operacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="Idmarca" ColumnName="Idmarca" />
+                <ScalarProperty Name="nombremarca" ColumnName="nombremarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="Idpais" ColumnName="Idpais" />
+                <ScalarProperty Name="C_Postal" ColumnName="C_Postal" />
+                <ScalarProperty Name="NombrePais" ColumnName="NombrePais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produccion">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Produccion">
+              <MappingFragment StoreEntitySet="Produccion">
+                <ScalarProperty Name="Idproduccion" ColumnName="Idproduccion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id_Produccion_Marca_Pais" ColumnName="Id_Produccion_Marca_Pais" />
+                <ScalarProperty Name="Idturno" ColumnName="Idturno" />
+                <ScalarProperty Name="Idempleado" ColumnName="Idempleado" />
+                <ScalarProperty Name="Fecha_Operacion" ColumnName="Fecha_Operacion" />
+                <ScalarProperty Name="Descripcion_Operacion" ColumnName="Descripcion_Operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produccion_Marca">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Produccion_Marca">
+              <MappingFragment StoreEntitySet="Produccion_Marca">
+                <ScalarProperty Name="Idproduccion_marca" ColumnName="Idproduccion_marca" />
+                <ScalarProperty Name="Idproducto" ColumnName="Idproducto" />
+                <ScalarProperty Name="Idmarca" ColumnName="Idmarca" />
+                <ScalarProperty Name="Fecha_Operacion" ColumnName="Fecha_Operacion" />
+                <ScalarProperty Name="Descripcion_Operacion" ColumnName="Descripcion_Operacion" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produccion_Marca_Pais">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Produccion_Marca_Pais">
+              <MappingFragment StoreEntitySet="Produccion_Marca_Pais">
+                <ScalarProperty Name="Id_Produccion_Marca_Pais" ColumnName="Id_Produccion_Marca_Pais" />
+                <ScalarProperty Name="Idproduccion_marca" ColumnName="Idproduccion_marca" />
+                <ScalarProperty Name="Idpais" ColumnName="Idpais" />
+                <ScalarProperty Name="Fecha_Operacion" ColumnName="Fecha_Operacion" />
+                <ScalarProperty Name="Descripcion_Operacion" ColumnName="Descripcion_Operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Idproducto" ColumnName="Idproducto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+                <ScalarProperty Name="Peso_Helado" ColumnName="Peso_Helado" />
+                <ScalarProperty Name="Peso_Total" ColumnName="Peso_Total" />
+                <ScalarProperty Name="Fecha_Alta" ColumnName="Fecha_Alta" />
+                <ScalarProperty Name="Fecha_Operacion" ColumnName="Fecha_Operacion" />
+                <ScalarProperty Name="Producto_Baja" ColumnName="Producto_Baja" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+                <ScalarProperty Name="Descripcion_Operacion" ColumnName="Descripcion_Operacion" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puesto">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Puesto">
+              <MappingFragment StoreEntitySet="Puesto">
+                <ScalarProperty Name="Idpuesto" ColumnName="Idpuesto" />
+                <ScalarProperty Name="Tipo_puesto" ColumnName="Tipo_puesto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turno">
+            <EntityTypeMapping TypeName="HelacorLineadeTortaModel.Turno">
+              <MappingFragment StoreEntitySet="Turno">
+                <ScalarProperty Name="Idturno" ColumnName="Idturno" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Horario_Inicio" ColumnName="Horario_Inicio" />
+                <ScalarProperty Name="Horario_Fin" ColumnName="Horario_Fin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

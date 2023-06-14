@@ -1,7 +1,7 @@
 USE [master]
 GO
 
-DROP DATABASE Helacor_Linea_de_Torta;
+DROP DATABASE HelacorLineadeTorta;
 GO
 
 /****** Object:  Database [Helacor Linea de Torta]    Script Date: 07/06/2023 20:39:28 ******/
@@ -9,12 +9,12 @@ USE [master]
 GO
 
 
-CREATE DATABASE Helacor_Linea_de_Torta;
+CREATE DATABASE HelacorLineadeTorta;
 GO
 
 /*  TABLAS HELACOR*/
 
-USE Helacor_Linea_de_Torta;
+USE HelacorLineadeTorta;
 GO
 
 CREATE TABLE [dbo].[Marca](
@@ -59,9 +59,6 @@ CREATE TABLE [dbo].[Empleado](
 	);
 GO
 
-ALTER TABLE [dbo].[Empleado]  WITH CHECK ADD  CONSTRAINT [fk_Puesto_Empleado] FOREIGN KEY([Idpuesto])
-REFERENCES [dbo].[Puesto] ([Idpuesto])
-GO
 
 CREATE TABLE [dbo].[Producto](
 	[Idproducto] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
@@ -78,15 +75,7 @@ CREATE TABLE [dbo].[Producto](
 	[IdEmpleado] [int] NULL);
 GO
 
-ALTER TABLE [dbo].[Producto]  WITH CHECK ADD  CONSTRAINT [FK_Producto_Empleado] FOREIGN KEY([IdEmpleado])
-REFERENCES [dbo].[Empleado] ([Idempleado])
-GO
 
-ALTER TABLE [dbo].[Producto] CHECK CONSTRAINT [FK_Producto_Empleado]
-GO
-
-ALTER TABLE [dbo].[Empleado] CHECK CONSTRAINT [fk_Puesto_Empleado]
-GO
 
 CREATE TABLE [dbo].[Produccion_Marca](
 	[Idproduccion_marca] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
@@ -97,26 +86,7 @@ CREATE TABLE [dbo].[Produccion_Marca](
 	[IdEmpleado] [int] NULL);
 GO
 
-ALTER TABLE [dbo].[Produccion_Marca]  WITH CHECK ADD  CONSTRAINT [fk_marca] FOREIGN KEY([Idmarca])
-REFERENCES [dbo].[Marca] ([Idmarca])
-GO
 
-ALTER TABLE [dbo].[Produccion_Marca] CHECK CONSTRAINT [fk_marca]
-GO
-
-ALTER TABLE [dbo].[Produccion_Marca]  WITH CHECK ADD  CONSTRAINT [FK_Produccion_Marca_Empleado] FOREIGN KEY([IdEmpleado])
-REFERENCES [dbo].[Empleado] ([Idempleado])
-GO
-
-ALTER TABLE [dbo].[Produccion_Marca] CHECK CONSTRAINT [FK_Produccion_Marca_Empleado]
-GO
-
-ALTER TABLE [dbo].[Produccion_Marca]  WITH CHECK ADD  CONSTRAINT [fk_producto] FOREIGN KEY([Idproducto])
-REFERENCES [dbo].[Producto] ([Idproducto])
-GO
-
-ALTER TABLE [dbo].[Produccion_Marca] CHECK CONSTRAINT [fk_producto]
-GO
 
 CREATE TABLE [dbo].[Produccion_Marca_Pais](
 	[Id_Produccion_Marca_Pais] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
@@ -126,19 +96,7 @@ CREATE TABLE [dbo].[Produccion_Marca_Pais](
 	[Descripcion_Operacion] [nvarchar](500) NULL);
 GO
 
-ALTER TABLE [dbo].[Produccion_Marca_Pais]  WITH CHECK ADD  CONSTRAINT [fk_pais] FOREIGN KEY([Idpais])
-REFERENCES [dbo].[Pais] ([Idpais])
-GO
 
-ALTER TABLE [dbo].[Produccion_Marca_Pais] CHECK CONSTRAINT [fk_pais]
-GO
-
-ALTER TABLE [dbo].[Produccion_Marca_Pais]  WITH CHECK ADD  CONSTRAINT [fk_Produccion_Marca] FOREIGN KEY([Idproduccion_marca])
-REFERENCES [dbo].[Produccion_Marca] ([Idproduccion_marca])
-GO
-
-ALTER TABLE [dbo].[Produccion_Marca_Pais] CHECK CONSTRAINT [fk_Produccion_Marca]
-GO
 
 
 CREATE TABLE [dbo].[Produccion](
@@ -151,29 +109,10 @@ CREATE TABLE [dbo].[Produccion](
 	[Descripcion_Operacion] [nvarchar](500) NULL);
 GO
 
-ALTER TABLE [dbo].[Produccion]  WITH CHECK ADD  CONSTRAINT [fk_empleado] FOREIGN KEY([Idempleado])
-REFERENCES [dbo].[Empleado] ([Idempleado])
-GO
 
-ALTER TABLE [dbo].[Produccion] CHECK CONSTRAINT [fk_empleado]
-GO
-
-ALTER TABLE [dbo].[Produccion]  WITH CHECK ADD  CONSTRAINT [fk_Produccion_Marca_Pais] FOREIGN KEY([Id_Produccion_Marca_Pais])
-REFERENCES [dbo].[Produccion_Marca_Pais] ([Id_Produccion_Marca_Pais])
-GO
-
-ALTER TABLE [dbo].[Produccion] CHECK CONSTRAINT [fk_Produccion_Marca_Pais]
-GO
-
-ALTER TABLE [dbo].[Produccion]  WITH CHECK ADD  CONSTRAINT [fk_turno] FOREIGN KEY([Idturno])
-REFERENCES [dbo].[Turno] ([Idturno])
-GO
-
-ALTER TABLE [dbo].[Produccion] CHECK CONSTRAINT [fk_turno]
-GO
 /*  INSERTS HELACOR*/
 
-USE Helacor_Linea_de_Torta;
+USE HelacorLineadeTorta;
 
 INSERT INTO Puesto(Tipo_puesto, Descripcion) VALUES	( 'Lider' , 'revisa indicadores, analiza y toma decisiones para cumplir objetivos')
 INSERT INTO Puesto(Tipo_puesto, Descripcion) VALUES	( 'Encargado' , 'carga datos y es responsable del turno asignado')
