@@ -1,17 +1,25 @@
 //FUNCION GET
 
 function getAll() {
-  fetch("http://localhost:58112/api/Usuario")
+  fetch("http://localhost:56848/api/Producto")
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getAll");
       data.forEach((o) => {
         let _tr = `<tr>
-        <td>${o.id} </td>
-        <td>${o.Nombre} </td>
-        <td>${o.Apellido} </td>
-        <td>${o.Direccion} </td>
-        <td>${o.Telefono} </td>   
+        <td>${o.IdProducto} </td>
+        <td>${o.Descripcion} </td>
+        <td>${o.Tipo} </td>  
+        <td>${o.Unidad} </td> 
+        <td>${o.PesoHelado} </td> 
+        <td>${o.PesoTotal} </td> 
+        <td>${o.FechaAlta} </td> 
+        <td>${o.FechaOperacion} </td> 
+        <td>${o.ProductoBaja} </td> 
+        <td>${o.Operacion} </td> 
+        <td>${o.DescripcionOperacion} </td> 
+        <td>${o.IdEmpleado} </td> 
+
         </tr>`;
 
         _tbody.innerHTML += _tr;
@@ -25,22 +33,43 @@ function getId(id) {
   const _txtID = document.getElementById("txtID");
   id = _txtID.value;
 
-  fetch("http://localhost:58112/api/Usuario/" + id)
+  fetch("http://localhost:56848/api/Producto/" + id)
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getId");
       let _tr = `<tr>
-      <td>${data.id} </td>
-      <td>${data.Nombre} </td>
-      <td>${data.Apellido} </td>
-      <td>${data.Direccion} </td>
-      <td>${data.Telefono} </td>   
+      <td>${data.IdProducto} </td>
+        <td>${data.Descripcion} </td>
+        <td>${data.Tipo} </td>  
+        <td>${data.Unidad} </td> 
+        <td>${data.PesoHelado} </td> 
+        <td>${data.PesoTotal} </td> 
+        <td>${data.FechaAlta} </td> 
+        <td>${data.FechaOperacion} </td> 
+        <td>${data.ProductoBaja} </td> 
+        <td>${data.Operacion} </td> 
+        <td>${data.DescripcionOperacion} </td> 
+        <td>${data.IdEmpleado} </td> 
       </tr>`;
 
       _tbody.innerHTML += _tr;
 
-     
       _txtID.focus();
+    });
+}
+
+//FUNCION SELECT POR ID
+
+function selectID() {
+  fetch("http://localhost:56848/api/Producto")
+    .then((response) => response.json())
+    .then((data) => {
+      const _select = document.getElementById("txtID");
+      data.forEach((o) => {
+        let _option = `<option value="${o.IdProducto}">${o.IdProducto}</option>`;
+
+        _select.innerHTML += _option;
+      });
     });
 }
 
@@ -49,32 +78,55 @@ function getId(id) {
 let obj = "";
 
 function put(obj) {
-  const _txtIDPut = document.getElementById("txtIDPut");
-  const _txtNombrePut = document.getElementById("txtNombrePut");
-  const _txtApellidoPut = document.getElementById("txtApellidoPut");
-  const _txtDireccionPut = document.getElementById("txtDireccionPut");
-  const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
+  const txtIDPut = document.getElementById("txtIDPut");
+  const txtDescripcionPut = document.getElementById("txtDescripcionPut");
+  const txtTipoPut = document.getElementById("txtTipoPut");
+  const txtUnidadPut = document.getElementById("txtUnidadPut");
+  const txtPesoHeladoPut = document.getElementById("txtPesoHeladoPut");
+  const txtPesoTotalPut = document.getElementById("txtPesoTotalPut");
+  const txtFechaAltaPut = document.getElementById("txtFechaAltaPut");
+  const txtFechaOperacionPut = document.getElementById("txtFechaOperacionPut");
+  const txtProductoBajaPut = document.getElementById("txtProductoBajaPut");
+  const txtOperacionPut = document.getElementById("txtOperacionPut");
+  const txtDescripcionOperacionPut = document.getElementById(
+    "txtDescripcionOperacionPut"
+  );
+  const txtIdEmpleadoPut = document.getElementById("txtIdEmpleadoPut");
 
   obj = {
-    id: _txtIDPut.value,
-    Nombre: _txtNombrePut.value,
-    Apellido: _txtApellidoPut.value,
-    Direccion: _txtDireccionPut.value,
-    Telefono: _txtTelefonoPut.value,
+    IdProducto: txtIDPut.value,
+    Descripcion: txtDescripcionPut.value,
+    Tipo: txtTipoPut.value,
+    Unidad: txtUnidadPut.value,
+    PesoHelado: txtPesoHeladoPut.value,
+    PesoTotal: txtPesoTotalPut.value,
+    FechaAlta: txtFechaAltaPut.value,
+    FechaOperacion: txtFechaOperacionPut.value,
+    ProductoBaja: txtProductoBajaPut.value,
+    Operacion: txtOperacionPut.value,
+    DescripcionOperacion: txtDescripcionOperacionPut.value,
+    IdEmpleado: txtIdEmpleadoPut.value,
   };
   $.ajax({
     type: "PUT",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + obj.id,
+    url: "http://localhost:56848/api/Producto/" + obj.IdProducto,
     data: obj,
     success: function (data) {
       alert("PUT OK!");
-      _txtIDPut.value = "";
-      _txtNombrePut.value = "";
-      _txtApellidoPut.value = "";
-      _txtDireccionPut.value = "";
-      _txtTelefonoPut.value = "";
-      _txtIDPut.focus();
+      txtIDPut.value = "";
+      txtDescripcionPut.value = "";
+      txtTipoPut.value = "";
+      txtUnidadPut.value = "";
+      txtPesoHeladoPut.value = "";
+      txtPesoTotalPut.value = "";
+      txtFechaAltaPut.value = "";
+      txtFechaOperacionPut.value = "";
+      txtProductoBajaPut.value = "";
+      txtOperacionPut.value = "";
+      txtDescripcionOperacionPut.value = "";
+      txtIdEmpleadoPut.value = "";
+      txtIDPut.focus();
     },
     error: function (error) {
       alert("Debe seleccionar un ID pre-existente");
@@ -82,37 +134,135 @@ function put(obj) {
   });
 }
 
+//FUNCION SELECT POR ID EN PUT
+
+function selectIDPut() {
+  fetch("http://localhost:56848/api/Producto")
+    .then((response) => response.json())
+    .then((data) => {
+      const _select = document.getElementById("txtIDPut");
+      data.forEach((o) => {
+        let _option = `<option value="${o.IdProducto}">${o.IdProducto}</option>`;
+
+        _select.innerHTML += _option;
+      });
+    });
+}
+
+//FUNCION VALIDAR CAMPOS EN PUT
+
+function validarPut() {
+  const txtIDPut = document.getElementById("txtIDPut");
+  const txtDescripcionPut = document.getElementById("txtDescripcionPut");
+  const txtTipoPut = document.getElementById("txtTipoPut");
+  const txtUnidadPut = document.getElementById("txtUnidadPut");
+  const txtPesoHeladoPut = document.getElementById("txtPesoHeladoPut");
+  const txtPesoTotalPut = document.getElementById("txtPesoTotalPut");
+  const txtFechaAltaPut = document.getElementById("txtFechaAltaPut");
+  const txtFechaOperacionPut = document.getElementById("txtFechaOperacionPut");
+  const txtProductoBajaPut = document.getElementById("txtProductoBajaPut");
+  const txtOperacionPut = document.getElementById("txtOperacionPut");
+  const txtDescripcionOperacionPut = document.getElementById("txtDescripcionOperacionPut");
+  const txtIdEmpleadoPut = document.getElementById("txtIdEmpleadoPut");
+
+  if (
+    txtIDPut.value === "" ||
+    txtDescripcionPut.value === "" ||
+    txtTipoPut.value === "" ||
+    txtUnidadPut.value === "" ||
+    txtPesoHeladoPut.value === "" ||
+    txtPesoTotalPut.value === "" ||
+    txtFechaAltaPut.value === "" ||
+    txtFechaOperacionPut.value === "" ||
+    txtProductoBajaPut.value === "" ||
+    txtOperacionPut.value === "" ||
+    txtDescripcionOperacionPut.value === "" ||
+    txtIdEmpleadoPut.value === ""
+  ) {
+    alert("Por favor, complete todos los campos obligatorios.");
+    return false;
+  } else {
+    return put(obj);
+  }
+}
+
+//FUNCION BUSCAR POR ID EN PUT
+
+function buscarPut(IdProducto) {
+  const txtIDPut = document.getElementById("txtIDPut");
+  IdProducto = txtIDPut.value;
+
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "http://localhost:56848/api/Producto/" + IdProducto,
+    success: function (data) {
+      const txtDescripcionPut = document.getElementById("txtDescripcionPut");
+      const txtTipoPut = document.getElementById("txtTipoPut");
+      const txtUnidadPut = document.getElementById("txtUnidadPut");
+      const txtPesoHeladoPut = document.getElementById("txtPesoHeladoPut");
+      const txtPesoTotalPut = document.getElementById("txtPesoTotalPut");
+      const txtFechaAltaPut = document.getElementById("txtFechaAltaPut");
+      const txtFechaOperacionPut = document.getElementById("txtFechaOperacionPut");
+      const txtProductoBajaPut = document.getElementById("txtProductoBajaPut");
+      const txtOperacionPut = document.getElementById("txtOperacionPut");
+      const txtDescripcionOperacionPut = document.getElementById("txtDescripcionOperacionPut");
+      const txtIdEmpleadoPut = document.getElementById("txtIdEmpleadoPut");
+
+      txtDescripcionPut.value = data.Descripcion;
+      txtTipoPut.value = data.Tipo;
+      txtUnidadPut.value = data.Unidad;
+      txtPesoHeladoPut.value = data.PesoHelado;
+      txtPesoTotalPut.value = data.PesoTotal;
+      txtFechaAltaPut.value = data.FechaAlta;
+      txtFechaOperacionPut.value = data.FechaOperacion;
+      txtProductoBajaPut.value = data.ProductoBaja;
+      txtOperacionPut.value = data.Operacion;
+      txtDescripcionOperacionPut.value = data.DescripcionOperacion;
+      txtIdEmpleadoPut.value = data.IdEmpleado;
+    },
+  });
+}
+
 //FUNCION POST
 
 function post(obj) {
-  const _txtNombrePost = document.getElementById("txtNombrePost");
-  const _txtApellidoPost = document.getElementById("txtApellidoPost");
-  const _txtDireccionPost = document.getElementById("txtDireccionPost");
-  const _txtTelefonoPost = document.getElementById("txtTelefonoPost");
+  const txtDescripcionPost = document.getElementById("txtDescripcionPost");
+  const txtTipoPost = document.getElementById("txtTipoPost");
 
   obj = {
-    Nombre: _txtNombrePost.value,
-    Apellido: _txtApellidoPost.value,
-    Direccion: _txtDireccionPost.value,
-    Telefono: _txtTelefonoPost.value,
+    Descripcion: txtDescripcionPost.value,
+    Tipo: txtTipoPost.value,
   };
   $.ajax({
     type: "POST",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario",
+    url: "http://localhost:56848/api/Producto",
     data: obj,
     success: function (data) {
       alert("POST OK!");
-      _txtNombrePost.value = "";
-      _txtApellidoPost.value = "";
-      _txtDireccionPost.value = "";
-      _txtTelefonoPost.value = "";
-      _txtNombrePost.focus();
+      txtDescripcionPost.value = "";
+      txtTipoPost.value = "";
+      txtDescripcionPost.focus();
     },
     error: function (error) {
       alert(error);
     },
   });
+}
+
+//FUNCION VALIDAR CAMPOS EN POST
+
+function validarPost() {
+  const txtDescripcionPost = document.getElementById("txtDescripcionPost");
+  const txtTipoPost = document.getElementById("txtTipoPost");
+
+  if (txtDescripcionPost.value === "" || txtTipoPost.value === "") {
+    alert("Por favor, complete todos los campos obligatorios.");
+    return false;
+  } else {
+    return post(obj);
+  }
 }
 
 //FUNCION DELETE
@@ -129,7 +279,7 @@ function eliminar(idEliminar) {
   $.ajax({
     type: "DELETE",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + idEliminar.id,
+    url: "http://localhost:56848/api/Producto/" + idEliminar.id,
     data: idEliminar,
     success: function (data) {
       alert("DELETE OK!");
@@ -151,123 +301,29 @@ function buscarDelete(id) {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + id,
+    url: "http://localhost:56848/api/Producto/" + id,
     success: function (data) {
-      const txtNombreDelete = document.getElementById("txtNombreDelete");
-      const txtApellidoDelete = document.getElementById("txtApellidoDelete");
-      const txtDireccionDelete = document.getElementById("txtDireccionDelete");
-      const txtTelefonoDelete = document.getElementById("txtTelefonoDelete");
-
-      txtNombreDelete.value = data.Nombre;
-      txtApellidoDelete.value = data.Apellido;
-      txtDireccionDelete.value = data.Direccion;
-      txtTelefonoDelete.value = data.Telefono;
+      const txtDescripcionDelete = document.getElementById(
+        "txtDescripcionDelete"
+      );
+      const txtTipoDelete = document.getElementById("txtTipoDelete");
+      txtDescripcionDelete.value = data.Descripcion;
+      txtTipoDelete.value = data.Tipo;
     },
   });
-}
-
-//FUNCION BUSCAR POR ID EN PUT
-
-function buscarPut(id) {
-  const txtIDPut = document.getElementById("txtIDPut");
-  id = txtIDPut.value;
-
-  $.ajax({
-    type: "GET",
-    dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + id,
-    success: function (data) {
-      const _txtNombrePut = document.getElementById("txtNombrePut");
-      const _txtApellidoPut = document.getElementById("txtApellidoPut");
-      const _txtDireccionPut = document.getElementById("txtDireccionPut");
-      const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
-
-      _txtNombrePut.value = data.Nombre;
-      _txtApellidoPut.value = data.Apellido;
-      _txtDireccionPut.value = data.Direccion;
-      _txtTelefonoPut.value = data.Telefono;
-    },
-  });
-}
-
-//FUNCION SELECT POR ID
-
-function selectID() {
-  fetch("http://localhost:58112/api/Usuario")
-    .then((response) => response.json())
-    .then((data) => {
-      const _select = document.getElementById("txtID");
-      data.forEach((o) => {
-        let _option = `<option value="${o.id}">${o.id}</option>`;
-
-        _select.innerHTML += _option;
-      });
-    });
-}
-
-//FUNCION SELECT POR ID EN PUT
-
-function selectIDPut() {
-  fetch("http://localhost:58112/api/Usuario")
-    .then((response) => response.json())
-    .then((data) => {
-      const _select = document.getElementById("txtIDPut");
-      data.forEach((o) => {
-        let _option = `<option value="${o.id}">${o.id}</option>`;
-
-        _select.innerHTML += _option;
-      });
-    });
 }
 
 //FUNCION SELECT POR ID EN DELETE
 
 function selectIDDelete() {
-  fetch("http://localhost:58112/api/Usuario")
+  fetch("http://localhost:56848/api/Producto")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDEliminar");
       data.forEach((o) => {
-        let _option = `<option value="${o.id}">${o.id}</option>`;
+        let _option = `<option value="${o.IdProducto}">${o.IdProducto}</option>`;
 
         _select.innerHTML += _option;
       });
     });
-}
-
-//FUNCION VALIDAR CAMPOS EN POST
-
-function validarPost() {
-  const txtNombre = document.getElementById("txtNombrePost");
-  const txtApellido = document.getElementById("txtApellidoPost");
-  const txtDireccion = document.getElementById("txtDireccionPost");
-  const txtTelefono = document.getElementById("txtTelefonoPost");
-  
-  if (txtNombre.value === "" || txtApellido.value === "" || txtDireccion.value === "" || txtTelefono.value === "") {
-    alert("Por favor, complete todos los campos obligatorios.");
-    return false;
-  }
-
-  else{
-    return post(obj);
-  }
-}
-
-//FUNCION VALIDAR CAMPOS EN PUT
-
-function validarPut() {
-  const _txtIDPut = document.getElementById("txtIDPut");
-  const _txtNombrePut = document.getElementById("txtNombrePut");
-  const _txtApellidoPut = document.getElementById("txtApellidoPut");
-  const _txtDireccionPut = document.getElementById("txtDireccionPut");
-  const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
-  
-  if (_txtIDPut.value === "" || _txtNombrePut.value === "" || _txtApellidoPut.value === "" || _txtDireccionPut.value === "" || _txtTelefonoPut.value === "") {
-    alert("Por favor, complete todos los campos obligatorios.");
-    return false;
-  }
-
-  else{
-    return put(obj);
-  }
 }
