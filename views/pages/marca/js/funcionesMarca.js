@@ -1,14 +1,14 @@
 //FUNCION GET
 
 function getAll() {
-  fetch("http://localhost:56848/api/Marca")
+  fetch("http://localhost:53498/api/Marca")
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getAll");
       data.forEach((o) => {
         let _tr = `<tr>
-        <td>${o.IdMarca} </td>
-        <td>${o.NombreMarca} </td> 
+        <td>${o.Idmarca} </td>
+        <td>${o.nombremarca} </td> 
         </tr>`;
 
         _tbody.innerHTML += _tr;
@@ -22,13 +22,13 @@ function getId(id) {
   const _txtID = document.getElementById("txtID");
   id = _txtID.value;
 
-  fetch("http://localhost:56848/api/Marca/" + id)
+  fetch("http://localhost:53498/api/Marca/" + id)
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getId");
       let _tr = `<tr>
-      <td>${data.IdMarca} </td>
-      <td>${data.NombreMarca} </td>  
+      <td>${data.Idmarca} </td>
+      <td>${data.nombremarca} </td>  
       </tr>`;
 
       _tbody.innerHTML += _tr;
@@ -41,12 +41,12 @@ function getId(id) {
 //FUNCION SELECT POR ID
 
 function selectID() {
-  fetch("http://localhost:56848/api/Marca")
+  fetch("http://localhost:53498/api/Marca")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtID");
       data.forEach((o) => {
-        let _option = `<option value="${o.IdMarca}">${o.IdMarca}</option>`;
+        let _option = `<option value="${o.Idmarca}">${o.Idmarca}</option>`;
 
         _select.innerHTML += _option;
       });
@@ -63,14 +63,14 @@ function put(obj) {
  
 
   obj = {
-    IdMarca: _txtIDPut.value,
-    NombreMarca: _txtMarcaPut.value,
+    Idmarca: _txtIDPut.value,
+    nombremarca: _txtMarcaPut.value,
     
   };
   $.ajax({
     type: "PUT",
     dataType: "json",
-    url: "http://localhost:56848/api/Marca/" + obj.IdMarca,
+    url: "http://localhost:53498/api/Marca/" + obj.Idmarca,
     data: obj,
     success: function (data) {
       alert("PUT OK!");
@@ -87,12 +87,12 @@ function put(obj) {
 //FUNCION SELECT POR ID EN PUT
 
 function selectIDPut() {
-  fetch("http://localhost:56848/api/Marca")
+  fetch("http://localhost:53498/api/Marca")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDPut");
       data.forEach((o) => {
-        let _option = `<option value="${o.IdMarca}">${o.IdMarca}</option>`;
+        let _option = `<option value="${o.Idmarca}">${o.Idmarca}</option>`;
         
         _select.innerHTML += _option;
       });
@@ -117,19 +117,19 @@ function selectIDPut() {
 
   //FUNCION BUSCAR POR ID EN PUT
   
-  function buscarPut(IdMarca) {
+  function buscarPut(Idmarca) {
     const txtIDPut = document.getElementById("txtIDPut");
-    IdMarca = txtIDPut.value;
+    Idmarca = txtIDPut.value;
   
     $.ajax({
       type: "GET",
       dataType: "json",
-      url: "http://localhost:56848/api/Marca/" + IdMarca,
+      url: "http://localhost:53498/api/Marca/" + Idmarca,
       success: function (data) {
         const _txtMarcaPut = document.getElementById("txtMarcaPut");
         
   
-        _txtMarcaPut.value = data.NombreMarca;
+        _txtMarcaPut.value = data.nombremarca;
        
       },
     });
