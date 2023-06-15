@@ -1,7 +1,7 @@
 //FUNCION GET
 
 function getAll() {
-  fetch("http://localhost:58112/api/Usuario")
+  fetch("http://localhost:53498/api/Turno")
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getAll");
@@ -25,7 +25,7 @@ function getId(id) {
   const _txtID = document.getElementById("txtID");
   id = _txtID.value;
 
-  fetch("http://localhost:58112/api/Usuario/" + id)
+  fetch("http://localhost:53498/api/Turno/" + id)
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getId");
@@ -65,7 +65,7 @@ function put(obj) {
   $.ajax({
     type: "PUT",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + obj.id,
+    url: "http://localhost:53498/api/Turno/" + obj.id,
     data: obj,
     success: function (data) {
       alert("PUT OK!");
@@ -99,7 +99,7 @@ function post(obj) {
   $.ajax({
     type: "POST",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario",
+    url: "http://localhost:53498/api/Turno",
     data: obj,
     success: function (data) {
       alert("POST OK!");
@@ -129,7 +129,7 @@ function eliminar(idEliminar) {
   $.ajax({
     type: "DELETE",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + idEliminar.id,
+    url: "http://localhost:53498/api/Turno/" + idEliminar.id,
     data: idEliminar,
     success: function (data) {
       alert("DELETE OK!");
@@ -151,7 +151,7 @@ function buscarDelete(id) {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + id,
+    url: "http://localhost:53498/api/Turno/" + id,
     success: function (data) {
       const txtNombreDelete = document.getElementById("txtNombreDelete");
       const txtApellidoDelete = document.getElementById("txtApellidoDelete");
@@ -175,7 +175,7 @@ function buscarPut(id) {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:58112/api/Usuario/" + id,
+    url: "http://localhost:53498/api/Turno/" + id,
     success: function (data) {
       const _txtNombrePut = document.getElementById("txtNombrePut");
       const _txtApellidoPut = document.getElementById("txtApellidoPut");
@@ -193,7 +193,7 @@ function buscarPut(id) {
 //FUNCION SELECT POR ID
 
 function selectID() {
-  fetch("http://localhost:58112/api/Usuario")
+  fetch("http://localhost:53498/api/Turno")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtID");
@@ -208,7 +208,7 @@ function selectID() {
 //FUNCION SELECT POR ID EN PUT
 
 function selectIDPut() {
-  fetch("http://localhost:58112/api/Usuario")
+  fetch("http://localhost:53498/api/Turno")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDPut");
@@ -223,7 +223,7 @@ function selectIDPut() {
 //FUNCION SELECT POR ID EN DELETE
 
 function selectIDDelete() {
-  fetch("http://localhost:58112/api/Usuario")
+  fetch("http://localhost:53498/api/Turno")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDEliminar");
