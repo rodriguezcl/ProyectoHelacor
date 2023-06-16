@@ -1,14 +1,14 @@
 //FUNCION GET
 
 function getAll() {
-  fetch("http://localhost:56848/api/Pais")
+  fetch("http://localhost:53498/api/Pais")
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getAll");
       data.forEach((o) => {
         let _tr = `<tr>
-        <td>${o.IdPais} </td>
-        <td>${o.CodigoPostal} </td> 
+        <td>${o.Idpais} </td>
+        <td>${o.C_Postal} </td> 
         <td>${o.NombrePais} </td> 
         </tr>`;
 
@@ -23,13 +23,13 @@ function getId(id) {
   const _txtID = document.getElementById("txtID");
   id = _txtID.value;
 
-  fetch("http://localhost:56848/api/Pais/" + id)
+  fetch("http://localhost:53498/api/Pais/" + id)
     .then((response) => response.json())
     .then((data) => {
       const _tbody = document.getElementById("getId");
       let _tr = `<tr>
-      <td>${data.IdPais} </td>
-      <td>${data.CodigoPostal} </td> 
+      <td>${data.Idpais} </td>
+      <td>${data.C_Postal} </td> 
       <td>${data.NombrePais} </td>  
       </tr>`;
 
@@ -42,12 +42,12 @@ function getId(id) {
 //FUNCION SELECT POR ID
 
 function selectID() {
-  fetch("http://localhost:56848/api/Pais")
+  fetch("http://localhost:53498/api/Pais")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtID");
       data.forEach((o) => {
-        let _option = `<option value="${o.IdPais}">${o.IdPais}</option>`;
+        let _option = `<option value="${o.Idpais}">${o.Idpais}</option>`;
 
         _select.innerHTML += _option;
       });
@@ -64,14 +64,14 @@ function put(obj) {
   const _txtNombrePaisPut = document.getElementById("txtNombrePaisPut");
 
   obj = {
-    IdPais: _txtIDPut.value,
-    CodigoPostal: _txtCodigoPostalPut.value,
+    Idpais: _txtIDPut.value,
+    C_Postal: _txtCodigoPostalPut.value,
     NombrePais: _txtNombrePaisPut.value,
   };
   $.ajax({
     type: "PUT",
     dataType: "json",
-    url: "http://localhost:56848/api/Pais/" + obj.IdPais,
+    url: "http://localhost:53498/api/Pais/" + obj.Idpais,
     data: obj,
     success: function (data) {
       alert("PUT OK!");
@@ -89,12 +89,12 @@ function put(obj) {
 //FUNCION SELECT POR ID EN PUT
 
 function selectIDPut() {
-  fetch("http://localhost:56848/api/Pais")
+  fetch("http://localhost:53498/api/Pais")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDPut");
       data.forEach((o) => {
-        let _option = `<option value="${o.IdPais}">${o.IdPais}</option>`;
+        let _option = `<option value="${o.Idpais}">${o.Idpais}</option>`;
 
         _select.innerHTML += _option;
       });
@@ -122,19 +122,19 @@ function validarPut() {
 
 //FUNCION BUSCAR POR ID EN PUT
 
-function buscarPut(IdPais) {
+function buscarPut(id) {
   const txtIDPut = document.getElementById("txtIDPut");
-  IdPais = txtIDPut.value;
+  id = txtIDPut.value;
 
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:56848/api/Pais/" + IdPais,
+    url: "http://localhost:53498/api/Pais/" + id,
     success: function (data) {
       const _txtCodigoPostalPut = document.getElementById("txtCodigoPostalPut");
       const _txtNombrePaisPut = document.getElementById("txtNombrePaisPut");
 
-      _txtCodigoPostalPut.value = data.CodigoPostal;
+      _txtCodigoPostalPut.value = data.C_Postal;
       _txtNombrePaisPut.value = data.NombrePais;
     },
   });
@@ -147,13 +147,13 @@ function post(obj) {
   const txtNombrePaisPost = document.getElementById("txtNombrePaisPost");
 
   obj = {
-    CodigoPostal: txtCodigoPostalPost.value,
+    C_Postal: txtCodigoPostalPost.value,
     NombrePais: txtNombrePaisPost.value,
   };
   $.ajax({
     type: "POST",
     dataType: "json",
-    url: "http://localhost:56848/api/Pais",
+    url: "http://localhost:53498/api/Pais",
     data: obj,
     success: function (data) {
       alert("POST OK!");
@@ -195,7 +195,7 @@ function eliminar(idEliminar) {
   $.ajax({
     type: "DELETE",
     dataType: "json",
-    url: "http://localhost:56848/api/Pais/" + idEliminar.id,
+    url: "http://localhost:53498/api/Pais/" + idEliminar.id,
     data: idEliminar,
     success: function (data) {
       alert("DELETE OK!");
@@ -217,7 +217,7 @@ function buscarDelete(id) {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:56848/api/Pais/" + id,
+    url: "http://localhost:53498/api/Pais/" + id,
     success: function (data) {
       const txtCodigoPostalDelete = document.getElementById("txtCodigoPostalDelete");
       const txtNombrePaisDelete = document.getElementById("txtNombrePaisDelete");
@@ -230,12 +230,12 @@ function buscarDelete(id) {
 //FUNCION SELECT POR ID EN DELETE
 
 function selectIDDelete() {
-  fetch("http://localhost:56848/api/Pais")
+  fetch("http://localhost:53498/api/Pais/")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDEliminar");
       data.forEach((o) => {
-        let _option = `<option value="${o.IdPais}">${o.IdPais}</option>`;
+        let _option = `<option value="${o.Idpais}">${o.Idpais}</option>`;
 
         _select.innerHTML += _option;
       });
