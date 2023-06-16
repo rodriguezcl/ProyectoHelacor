@@ -8,7 +8,6 @@ function getAll() {
       data.forEach((o) => {
         let _tr = `<tr>
         <td>${o.Idturno} </td>
-        <td>${o.Nombre} </td>
         <td>${o.Descripcion} </td>
         <td>${o.Horario_Inicio} </td>
         <td>${o.Horario_Fin} </td>   
@@ -31,7 +30,6 @@ function getId(id) {
       const _tbody = document.getElementById("getId");
       let _tr = `<tr>
       <td>${data.Idturno} </td>
-      <td>${data.Nombre} </td>
       <td>${data.Descripcion} </td>
       <td>${data.Horario_Inicio} </td>
       <td>${data.Horario_Fin} </td>   
@@ -51,7 +49,7 @@ function selectID() {
     .then((data) => {
       const _select = document.getElementById("txtID");
       data.forEach((o) => {
-        let _option = `<option value="${o.id}">${o.id}</option>`;
+        let _option = `<option value="${o.Idturno}">${o.Idturno}</option>`;
 
         _select.innerHTML += _option;
       });
@@ -157,13 +155,13 @@ function validarPut() {
 function post(obj) {
 
   const txtDescripcionPost = document.getElementById("txtDescripcionPost");
-  const txtHorarioInicioPut = document.getElementById("txtHorarioInicioPut");
-  const txtHorarioFinPut = document.getElementById("txtHorarioFinPut");
+  const txtHorarioInicioPost = document.getElementById("txtHorarioInicioPost");
+  const txtHorarioFinPost = document.getElementById("txtHorarioFinPost");
 
   obj = {
     Descripcion: txtDescripcionPost.value,
-    Horario_Inicio: txtHorarioInicioPut.value,
-    Horario_Fin: txtHorarioFinPut.value,
+    Horario_Inicio: txtHorarioInicioPost.value,
+    Horario_Fin: txtHorarioFinPost.value,
   };
   $.ajax({
     type: "POST",
@@ -173,8 +171,8 @@ function post(obj) {
     success: function (data) {
       alert("POST OK!");
       txtDescripcionPost.value = "";
-      txtHorarioInicioPut.value = "";
-      txtHorarioFinPut.value = "";
+      txtHorarioInicioPost.value = "";
+      txtHorarioFinPost.value = "";
       txtDescripcionPost.focus();
     },
     error: function (error) {
@@ -187,13 +185,13 @@ function post(obj) {
 
 function validarPost() {
   const txtDescripcionPost = document.getElementById("txtDescripcionPost");
-  const txtHorarioInicioPut = document.getElementById("txtHorarioInicioPut");
-  const txtHorarioFinPut = document.getElementById("txtHorarioFinPut");
+  const txtHorarioInicioPost = document.getElementById("txtHorarioInicioPost");
+  const txtHorarioFinPost = document.getElementById("txtHorarioFinPost");
 
   if (
     txtDescripcionPost.value === "" ||
-    txtHorarioInicioPut.value === "" ||
-    txtHorarioFinPut.value === ""
+    txtHorarioInicioPost.value === "" ||
+    txtHorarioFinPost.value === ""
   ) {
     alert("Por favor, complete todos los campos obligatorios.");
     return false;
@@ -207,10 +205,10 @@ function validarPost() {
 let idEliminar = "";
 
 function eliminar(idEliminar) {
-  const _txtIDEliminar = document.getElementById("txtIDEliminar");
+  const txtIDEliminar = document.getElementById("txtIDEliminar");
 
   idEliminar = {
-    id: _txtIDEliminar.value,
+    id: txtIDEliminar.value,
   };
 
   $.ajax({
@@ -220,8 +218,8 @@ function eliminar(idEliminar) {
     data: idEliminar,
     success: function (data) {
       alert("DELETE OK!");
-      _txtIDEliminar.value = "";
-      _txtIDEliminar.focus();
+      txtIDEliminar.value = "";
+      txtIDEliminar.focus();
     },
     error: function (error) {
       alert("Debe seleccionar un ID pre-existente");
@@ -232,8 +230,8 @@ function eliminar(idEliminar) {
 //FUNCION BUSCAR POR ID EN DELETE
 
 function buscarDelete(id) {
-  const _txtIDEliminar = document.getElementById("txtIDEliminar");
-  id = _txtIDEliminar.value;
+  const txtIDEliminar = document.getElementById("txtIDEliminar");
+  id = txtIDEliminar.value;
 
   $.ajax({
     type: "GET",
