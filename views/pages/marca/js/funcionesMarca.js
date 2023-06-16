@@ -117,14 +117,14 @@ function selectIDPut() {
 
   //FUNCION BUSCAR POR ID EN PUT
   
-  function buscarPut(Idmarca) {
+  function buscarPut(id) {
     const txtIDPut = document.getElementById("txtIDPut");
-    Idmarca = txtIDPut.value;
+    id = txtIDPut.value;
   
     $.ajax({
       type: "GET",
       dataType: "json",
-      url: "http://localhost:53498/api/Marca/" + Idmarca,
+      url: "http://localhost:53498/api/Marca/" + id,
       success: function (data) {
         const _txtMarcaPut = document.getElementById("txtMarcaPut");
         
@@ -148,7 +148,7 @@ function selectIDPut() {
   $.ajax({
     type: "POST",
     dataType: "json",
-    url: "http://localhost:56848/api/Marca",
+    url: "http://localhost:53498/api/Marca",
     data: obj,
     success: function (data) {
       alert("POST OK!");
@@ -190,7 +190,7 @@ function eliminar(idEliminar) {
   $.ajax({
     type: "DELETE",
     dataType: "json",
-    url: "http://localhost:56848/api/Marca/" + idEliminar.id,
+    url: "http://localhost:53498/api/Marca/" + idEliminar.id,
     data: idEliminar,
     success: function (data) {
       alert("DELETE OK!");
@@ -212,7 +212,7 @@ function buscarDelete(id) {
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "http://localhost:56848/api/Marca/" + id,
+    url: "http://localhost:53498/api/Marca/" + id,
     success: function (data) {
       const txtMarcaDelete = document.getElementById("txtMarcaDelete");
       txtMarcaDelete.value = data.NombreMarca;
@@ -225,7 +225,7 @@ function buscarDelete(id) {
 //FUNCION SELECT POR ID EN DELETE
 
 function selectIDDelete() {
-  fetch("http://localhost:56848/api/Marca")
+  fetch("http://localhost:53498/api/Marca/")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDEliminar");
