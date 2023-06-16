@@ -215,7 +215,7 @@ function buscarDelete(id) {
     url: "http://localhost:53498/api/Marca/" + id,
     success: function (data) {
       const txtMarcaDelete = document.getElementById("txtMarcaDelete");
-      txtMarcaDelete.value = data.NombreMarca;
+      txtMarcaDelete.value = data.nombremarca;
       
     },
   });
@@ -230,7 +230,7 @@ function selectIDDelete() {
     .then((data) => {
       const _select = document.getElementById("txtIDEliminar");
       data.forEach((o) => {
-        let _option = `<option value="${o.IdMarca}">${o.IdMarca}</option>`;
+        let _option = `<option value="${o.Idmarca}">${o.Idmarca}</option>`;
 
         _select.innerHTML += _option;
       });

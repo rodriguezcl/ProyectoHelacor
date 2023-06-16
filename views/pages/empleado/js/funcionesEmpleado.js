@@ -336,7 +336,7 @@ function validarPost() {
   const txtDescripcionOpPost=document.getElementById("txtDescripcionOpPost");
   const txtActivoPost=document.getElementById("txtActivoPost");
 
-  if(txtApellido.value === "" || txtNombre.value === "" || txtIdentidadPost.value === "" || txtTipoidentidadPost.value === "" || txtTelefono.value === "" || txtDomicilioPost.value === "" || txtIdPuestoPost.value === "" || txtFeAltaPost.value === "" || txtFeOperacionPost.value === "" || txtDescripcionOpPost === "" || txtActivoPost.value === "" ||)
+  if(txtApellido.value === "" || txtNombre.value === "" || txtIdentidadPost.value === "" || txtTipoidentidadPost.value === "" || txtTelefono.value === "" || txtDomicilioPost.value === "" || txtIdPuestoPost.value === "" || txtFeAltaPost.value === "" || txtFeOperacionPost.value === "" || txtDescripcionOpPost === "" || txtActivoPost.value === "")
   {
     alert("Por favor, complete todos los campos obligatorios.");
     return false;
@@ -351,10 +351,17 @@ function validarPost() {
 
 function validarPut() {
   const _txtIDPut = document.getElementById("txtIDPut");
-  const _txtNombrePut = document.getElementById("txtNombrePut");
   const _txtApellidoPut = document.getElementById("txtApellidoPut");
-  const _txtDireccionPut = document.getElementById("txtDireccionPut");
+  const _txtNombrePut = document.getElementById("txtNombrePut");
+  const _txtIdentidadPut = document.getElementById("txtIdentidadPut");
+  const _txtTipoIdentidadPut=document.getElementById("txtTipoIdentidadPut");
   const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
+  const _txtDomicilioPut = document.getElementById("txtDomicilioPut");
+  const _txtPuestoPut= document.getElementById("txtPuesto");
+  const _txtFeAltaPut= document.getElementById("txtFeAltaPut");
+  const _txtFeOperacionPut=document.getElementById("txtFeOperacionPut");
+  const _txtDescripcionPut=document.getElementById("txtDescripcionPut");
+  const _txtActivoPut=document.getElementById("txtActivoPut");
 
   if (_txtIDPut.value === "" || _txtNombrePut.value === "" || _txtApellidoPut.value === "" || _txtDireccionPut.value === "" || _txtTelefonoPut.value === "") {
     alert("Por favor, complete todos los campos obligatorios.");
