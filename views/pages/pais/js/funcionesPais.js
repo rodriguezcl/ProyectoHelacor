@@ -186,10 +186,10 @@ function validarPost() {
 let idEliminar = "";
 
 function eliminar(idEliminar) {
-  const _txtIDEliminar = document.getElementById("txtIDEliminar");
+  const txtIDEliminar = document.getElementById("txtIDEliminar");
 
   idEliminar = {
-    id: _txtIDEliminar.value,
+    id: txtIDEliminar.value,
   };
 
   $.ajax({
@@ -199,8 +199,8 @@ function eliminar(idEliminar) {
     data: idEliminar,
     success: function (data) {
       alert("DELETE OK!");
-      _txtIDEliminar.value = "";
-      _txtIDEliminar.focus();
+      txtIDEliminar.value = "";
+      txtIDEliminar.focus();
     },
     error: function (error) {
       alert("Debe seleccionar un ID pre-existente");
@@ -211,17 +211,20 @@ function eliminar(idEliminar) {
 //FUNCION BUSCAR POR ID EN DELETE
 
 function buscarDelete(id) {
-  const _txtIDEliminar = document.getElementById("txtIDEliminar");
-  id = _txtIDEliminar.value;
+  const txtIDEliminar = document.getElementById("txtIDEliminar");
+  id = txtIDEliminar.value;
 
   $.ajax({
     type: "GET",
     dataType: "json",
     url: "http://localhost:53498/api/Pais/" + id,
     success: function (data) {
+      const txtIDEliminar = document.getElementById("txtIDEliminar");
       const txtCodigoPostalDelete = document.getElementById("txtCodigoPostalDelete");
       const txtNombrePaisDelete = document.getElementById("txtNombrePaisDelete");
-      txtCodigoPostalDelete.value = data.CodigoPostal;
+
+      txtIDEliminar.value = data.Idpais
+      txtCodigoPostalDelete.value = data.C_Postal;
       txtNombrePaisDelete.value = data.NombrePais;
     },
   });
@@ -230,7 +233,7 @@ function buscarDelete(id) {
 //FUNCION SELECT POR ID EN DELETE
 
 function selectIDDelete() {
-  fetch("http://localhost:53498/api/Pais/")
+  fetch("http://localhost:53498/api/Pais")
     .then((response) => response.json())
     .then((data) => {
       const _select = document.getElementById("txtIDEliminar");
@@ -241,3 +244,4 @@ function selectIDDelete() {
       });
     });
 }
+
