@@ -15,11 +15,11 @@ function getAll() {
         <td>${o.Telefono} </td>   
         <td>${o.Domiclio} </td>
         <td>${o.Idpuesto} </td>
-        <td>${o.Fecha_Alta} </td>
-        <td>${o.Fecha_Operacion} </td>
-        <td>${o.Descripcion_Operacion} </td>
-        <td>${o.Activo} </td>
-        </tr>`;
+         </tr>`;
+        // <td>${o.Fecha_Alta} </td>
+        // <td>${o.Fecha_Operacion} </td>
+        // <td>${o.Descripcion_Operacion} </td>
+        // <td>${o.Activo} </td>
 
         _tbody.innerHTML += _tr;
       });
@@ -44,12 +44,13 @@ function getId(id) {
         <td>${data.Tipo_I_Identidad} </td>
         <td>${data.Telefono} </td>   
         <td>${data.Domiclio} </td>
-        <td>${data.Idpuesto} </td>
-        <td>${data.Fecha_Alta} </td>
-        <td>${data.Fecha_Operacion} </td>
-        <td>${data.Descripcion_Operacion} </td>
-        <td>${data.Activo} </td>
+        <td>${data.Idpuesto} </td>        
         </tr>`;
+
+      // <td>${data.Fecha_Alta} </td>
+      // <td>${data.Fecha_Operacion} </td>
+      // <td>${data.Descripcion_Operacion} </td>
+      // <td>${data.Activo} </td>
 
       _tbody.innerHTML += _tr;
 
@@ -71,10 +72,10 @@ function put(obj) {
   const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
   const _txtDomicilio = document.getElementById("txtDomicilio");
   const _txtIdPuesto = document.getElementById("txtIdPuesto");
-  const _txtFeAlta = document.getElementById("txtFeAlta");
-  const _txtFeOperacion = document.getElementById("txtFeOperacion");
-  const _txtDescripcionOp = document.getElementById("txtDescripcionOp");
-  const _txtActivo = document.getElementById("txtActivo");
+  // const _txtFeAlta = document.getElementById("txtFeAlta");
+  // const _txtFeOperacion = document.getElementById("txtFeOperacion");
+  // const _txtDescripcionOp = document.getElementById("txtDescripcionOp");
+  // const _txtActivo = document.getElementById("txtActivo");
 
 
   obj = {
@@ -86,10 +87,10 @@ function put(obj) {
     Telefono: _txtTelefonoPut.value,
     Domiclio: _txtDomicilio.value,
     Idpuesto: _txtIdPuesto.value,
-    Fecha_Alta: _txtFeAlta.value,
-    Fecha_Operacion: _txtFeOperacion.value,
-    Descripcion_Operacion: _txtDescripcionOp.value,
-    Activo: _txtActivo.value,
+    // Fecha_Alta: _txtFeAlta.value,
+    // Fecha_Operacion: _txtFeOperacion.value,
+    // Descripcion_Operacion: _txtDescripcionOp.value,
+    // Activo: _txtActivo.value,
 
 
   };
@@ -108,10 +109,10 @@ function put(obj) {
       _txtTelefonoPut.value = "";
       _txtDomicilio.value = "";
       _txtIdPuesto.value = "";
-      _txtFeAlta.value = "";
-      _txtFeOperacion.value = "";
-      _txtDescripcionOp.value = "";
-      _txtActivo.value = "";
+      // _txtFeAlta.value = "";
+      // _txtFeOperacion.value = "";
+      // _txtDescripcionOp.value = "";
+      // _txtActivo.value = "";
 
       _txtIDPut.focus();
     },
@@ -132,10 +133,10 @@ function post(obj) {
   const _txtTelefonoPost = document.getElementById("txtTelefonoPostPost");
   const _txtDomicilioPost = document.getElementById("txtDomicilioPost");
   const _txtIdPuestoPost = document.getElementById("txtIdPuestoPost");
-  const _txtFeAltaPost = document.getElementById("txtFeAltaPost");
-  const _txtFeOperacionPost = document.getElementById("txtFeOperacionPost");
-  const _txtDescripcionOpPost = document.getElementById("txtDescripcionOpPost");
-  const _txtActivoPost = document.getElementById("txtActivoPost");
+  // const _txtFeAltaPost = document.getElementById("txtFeAltaPost");
+  // const _txtFeOperacionPost = document.getElementById("txtFeOperacionPost");
+  // const _txtDescripcionOpPost = document.getElementById("txtDescripcionOpPost");
+  // const _txtActivoPost = document.getElementById("txtActivoPost");
 
 
   obj = {
@@ -147,10 +148,10 @@ function post(obj) {
     Telefono: _txtTelefonoPost.value,
     Domiclio: _txtDomicilioPost.value,
     Idpuesto: _txtIdPuestoPost.value,
-    Fecha_Alta: _txtFeAltaPost.value,
-    Fecha_Operacion: _txtFeOperacionPost.value,
-    Descripcion_Operacion: _txtDescripcionOpPost.value,
-    Activo: _txtActivoPost.value,
+    // Fecha_Alta: _txtFeAltaPost.value,
+    // Fecha_Operacion: _txtFeOperacionPost.value,
+    // Descripcion_Operacion: _txtDescripcionOpPost.value,
+    // Activo: _txtActivoPost.value,
 
 
   };
@@ -168,10 +169,10 @@ function post(obj) {
       _txtTelefonoPost.value = "";
       _txtDomicilioPost.value = "";
       _txtIdPuestoPost.value = "";
-      _txtFeAltaPost.value = "";
-      _txtFeOperacionPost.value = "";
-      _txtDescripcionOpPost.value = "";
-      _txtActivoPost.value = "";
+      // _txtFeAltaPost.value = "";
+      // _txtFeOperacionPost.value = "";
+      // _txtDescripcionOpPost.value = "";
+      // _txtActivoPost.value = "";
       _txtNombrePost.focus();
     },
     error: function (error) {
@@ -224,25 +225,25 @@ function buscarDelete(id) {
       const txtTipoIdentidadDelete = document.getElementById("txtTipoIdentidadDelete");
       const txtTelefonoDelete = document.getElementById("txtTelefonoDelete");
       const txtDomicilioDelete = document.getElementById("txtDomicilioDelete");
-      const txtPuestoDelete= document.getElementById("txtPuestoDelete");
-      const txtFeAltaDelete=document.getElementById("txtFeAltaDelete");
-      const txtFeOpeDelete=document.getElementById("txtFeOpeDelete");
-      const txtDescripcionDelete=document.getElementById("txtDescripcionDelete");
-      const txtActivo=document.getElementById("txtActivo");
+      const txtPuestoDelete = document.getElementById("txtPuestoDelete");
+      // const txtFeAltaDelete = document.getElementById("txtFeAltaDelete");
+      // const txtFeOpeDelete = document.getElementById("txtFeOpeDelete");
+      // const txtDescripcionDelete = document.getElementById("txtDescripcionDelete");
+      // const txtActivo = document.getElementById("txtActivo");
 
 
 
       txtNombreDelete.value = data.Nombre;
       txtApellidoDelete.value = data.Apellido;
-      txtIndentidadDelete.value=data.I_Identidad;
+      txtIndentidadDelete.value = data.I_Identidad;
       txtTipoIdentidadDelete.value = data.Tipo_I_Identidad;
       txtTelefonoDelete.value = data.Telefono;
-      txtDomicilioDelete.value=data.Domiclio;
-      txtPuestoDelete.value=data.Idpuesto;
-      txtFeAltaDelete.value=data.Fecha_Alta;
-      txtFeOpeDelete.value=data.Fecha_Operacion;
-      txtDescripcionDelete.value=data.Descripcion_Operacion;
-      txtActivo.value=data.Activo;
+      txtDomicilioDelete.value = data.Domiclio;
+      txtPuestoDelete.value = data.Idpuesto;
+      // txtFeAltaDelete.value = data.Fecha_Alta;
+      // txtFeOpeDelete.value = data.Fecha_Operacion;
+      // txtDescripcionDelete.value = data.Descripcion_Operacion;
+      // txtActivo.value = data.Activo;
 
 
 
@@ -263,15 +264,22 @@ function buscarPut(id) {
     dataType: "json",
     url: "http://localhost:53498/api/Empleado/" + id,
     success: function (data) {
-      const _txtNombrePut = document.getElementById("txtNombrePut");
+      const _txtIDPut = document.getElementById("txtIDPut");
       const _txtApellidoPut = document.getElementById("txtApellidoPut");
-      const _txtDireccionPut = document.getElementById("txtDireccionPut");
+      const _txtNombrePut = document.getElementById("txtNombrePut");
+      const _txtIdentidad = document.getElementById("txtIdentidad");
+      const _txtTipoidentidad = document.getElementById("txtTipoidentidad");
       const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
+      const _txtDomicilio = document.getElementById("txtDomicilio");
+      const _txtIdPuesto = document.getElementById("txtIdPuesto");
 
-      _txtNombrePut.value = data.Nombre;
       _txtApellidoPut.value = data.Apellido;
-      _txtDireccionPut.value = data.Direccion;
+      _txtNombrePut.value = data.Nombre;
+      _txtIdentidad.value = data.I_Identidad;
+      _txtTipoidentidad.value = data.Tipo_I_Identidad;
       _txtTelefonoPut.value = data.Telefono;
+      _txtDomicilio.value = data.Domiclio;
+      _txtIdPuesto.value = data.Idpuesto;
     },
   });
 }
@@ -329,15 +337,14 @@ function validarPost() {
   const txtIdentidadPost = document.getElementById("txtIdentidadPost");
   const txtTipoidentidadPost = document.getElementById("txtTipoidentidadPost");
   const txtTelefono = document.getElementById("txtTelefonoPost");
-  const txtDomicilioPost=document.getElementById("txtDomicilioPost");
-  const txtIdPuestoPost=document.getElementById("txtIdPuestoPost");
-  const txtFeAltaPost=document.getElementById("txtFeAltaPost");
-  const txtFeOperacionPost=document.getElementById("txtFeOperacionPost");
-  const txtDescripcionOpPost=document.getElementById("txtDescripcionOpPost");
-  const txtActivoPost=document.getElementById("txtActivoPost");
+  const txtDomicilioPost = document.getElementById("txtDomicilioPost");
+  const txtIdPuestoPost = document.getElementById("txtIdPuestoPost");
+  // const txtFeAltaPost=document.getElementById("txtFeAltaPost");
+  // const txtFeOperacionPost=document.getElementById("txtFeOperacionPost");
+  // const txtDescripcionOpPost=document.getElementById("txtDescripcionOpPost");
+  // const txtActivoPost=document.getElementById("txtActivoPost");
 
-  if(txtApellido.value === "" || txtNombre.value === "" || txtIdentidadPost.value === "" || txtTipoidentidadPost.value === "" || txtTelefono.value === "" || txtDomicilioPost.value === "" || txtIdPuestoPost.value === "" || txtFeAltaPost.value === "" || txtFeOperacionPost.value === "" || txtDescripcionOpPost === "" || txtActivoPost.value === "")
-  {
+  if (txtApellido.value === "" || txtNombre.value === "" || txtIdentidadPost.value === "" || txtTipoidentidadPost.value === "" || txtTelefono.value === "" || txtDomicilioPost.value === "" || txtIdPuestoPost.value === "" || txtFeAltaPost.value === "" || txtFeOperacionPost.value === "" || txtDescripcionOpPost === "" || txtActivoPost.value === "") {
     alert("Por favor, complete todos los campos obligatorios.");
     return false;
   }
@@ -354,16 +361,17 @@ function validarPut() {
   const _txtApellidoPut = document.getElementById("txtApellidoPut");
   const _txtNombrePut = document.getElementById("txtNombrePut");
   const _txtIdentidadPut = document.getElementById("txtIdentidadPut");
-  const _txtTipoIdentidadPut=document.getElementById("txtTipoIdentidadPut");
+  const _txtTipoIdentidadPut = document.getElementById("txtTipoIdentidadPut");
   const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
   const _txtDomicilioPut = document.getElementById("txtDomicilioPut");
-  const _txtPuestoPut= document.getElementById("txtPuesto");
-  const _txtFeAltaPut= document.getElementById("txtFeAltaPut");
-  const _txtFeOperacionPut=document.getElementById("txtFeOperacionPut");
-  const _txtDescripcionPut=document.getElementById("txtDescripcionPut");
-  const _txtActivoPut=document.getElementById("txtActivoPut");
+  const _txtPuestoPut = document.getElementById("txtPuesto");
+  // const _txtFeAltaPut = document.getElementById("txtFeAltaPut");
+  // const _txtFeOperacionPut = document.getElementById("txtFeOperacionPut");
+  // const _txtDescripcionPut = document.getElementById("txtDescripcionPut");
+  // const _txtActivoPut = document.getElementById("txtActivoPut");
 
-  if (_txtIDPut.value === "" || _txtNombrePut.value === "" || _txtApellidoPut.value === "" || _txtDireccionPut.value === "" || _txtTelefonoPut.value === "") {
+  if (_txtIDPut.value === "" || _txtApellidoPut.value === "" || _txtNombrePut.value === "" || _txtIdentidadPut.value === "" ||
+    _txtTipoIdentidadPut.value === "" || _txtTipoIdentidadPut.value === "" || _txtTelefonoPut.value === "" || _txtDomicilioPut.value === "" || _txtPuestoPut.value === "") {
     alert("Por favor, complete todos los campos obligatorios.");
     return false;
   }
