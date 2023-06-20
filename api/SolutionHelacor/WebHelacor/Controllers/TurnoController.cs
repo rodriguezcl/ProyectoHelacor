@@ -53,7 +53,7 @@ namespace WebHelacor.Controllers
             
             using (HelacorLineadeTortaEntities db = new HelacorLineadeTortaEntities())
             {
-                Turno oTurno = new Turno();
+                Turno oTurno = db.Turno.Find(id);
                 oTurno.Descripcion = value.Descripcion;
                 oTurno.Horario_Inicio = value.Horario_Inicio;
                 oTurno.Horario_Fin = value.Horario_Fin;
