@@ -206,9 +206,15 @@ let idEliminar = "";
 
 function eliminar(idEliminar) {
   const txtIDEliminar = document.getElementById("txtIDEliminar");
+  const txtDescripcionDelete = document.getElementById("txtDescripcionDelete");
+  const txtHoraInicioDelete = document.getElementById("txtHoraInicioDelete");
+  const txtHoraFinDelete = document.getElementById("txtHoraFinDelete");
 
   idEliminar = {
     id: txtIDEliminar.value,
+    Descripcion: txtDescripcionDelete.value,
+    Horario_Inicio: txtHoraInicioDelete.value,
+    Horario_Fin: txtHoraFinDelete.value,
   };
 
   $.ajax({
@@ -219,6 +225,9 @@ function eliminar(idEliminar) {
     success: function (data) {
       alert("DELETE OK!");
       txtIDEliminar.value = "";
+      txtDescripcionDelete.value = "";
+      txtHoraInicioDelete.value = "";
+      txtHoraFinDelete.value = "";
       txtIDEliminar.focus();
     },
     error: function (error) {

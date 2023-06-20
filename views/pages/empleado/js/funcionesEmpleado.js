@@ -54,8 +54,22 @@ function getId(id) {
 
       _tbody.innerHTML += _tr;
 
-
       _txtID.focus();
+    });
+}
+
+//FUNCION SELECT POR ID
+
+function selectID() {
+  fetch("http://localhost:53498/api/Empleado")
+    .then((response) => response.json())
+    .then((data) => {
+      const _select = document.getElementById("txtID");
+      data.forEach((o) => {
+        let _option = `<option value="${o.Idempleado}">${o.Idempleado}</option>`;
+
+        _select.innerHTML += _option;
+      });
     });
 }
 
@@ -67,16 +81,15 @@ function put(obj) {
   const _txtIDPut = document.getElementById("txtIDPut");
   const _txtApellidoPut = document.getElementById("txtApellidoPut");
   const _txtNombrePut = document.getElementById("txtNombrePut");
-  const _txtIdentidad = document.getElementById("txtIdentidad");
-  const _txtTipoidentidad = document.getElementById("txtTipoidentidad");
+  const _txtIdentidad = document.getElementById("txtIdentidadPut");
+  const _txtTipoidentidad = document.getElementById("txtTipoIdentidadPut");
   const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
-  const _txtDomicilio = document.getElementById("txtDomicilio");
-  const _txtIdPuesto = document.getElementById("txtIdPuesto");
+  const _txtDomicilio = document.getElementById("txtDomicilioPut");
+  const _txtIdPuesto = document.getElementById("txtPuestoPut");
   // const _txtFeAlta = document.getElementById("txtFeAlta");
   // const _txtFeOperacion = document.getElementById("txtFeOperacion");
   // const _txtDescripcionOp = document.getElementById("txtDescripcionOp");
   // const _txtActivo = document.getElementById("txtActivo");
-
 
   obj = {
     Idempleado: _txtIDPut.value,
@@ -91,13 +104,11 @@ function put(obj) {
     // Fecha_Operacion: _txtFeOperacion.value,
     // Descripcion_Operacion: _txtDescripcionOp.value,
     // Activo: _txtActivo.value,
-
-
   };
   $.ajax({
     type: "PUT",
     dataType: "json",
-    url: "http://localhost:53498/api/Empleado/" + obj.id,
+    url: "http://localhost:53498/api/Empleado/" + obj.Idempleado,
     data: obj,
     success: function (data) {
       alert("PUT OK!");
@@ -122,15 +133,92 @@ function put(obj) {
   });
 }
 
+//FUNCION BUSCAR POR ID EN PUT
+
+function buscarPut(id) {
+  const txtIDPut = document.getElementById("txtIDPut");
+  id = txtIDPut.value;
+
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "http://localhost:53498/api/Empleado/" + id,
+    success: function (data) {
+      const _txtApellidoPut = document.getElementById("txtApellidoPut");
+      const _txtNombrePut = document.getElementById("txtNombrePut");
+      const _txtIdentidad = document.getElementById("txtIdentidadPut");
+      const _txtTipoidentidad = document.getElementById("txtTipoIdentidadPut");
+      const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
+      const _txtDomicilio = document.getElementById("txtDomicilioPut");
+      const _txtIdPuesto = document.getElementById("txtPuestoPut");
+
+      _txtApellidoPut.value = data.Apellido;
+      _txtNombrePut.value = data.Nombre;
+      _txtIdentidad.value = data.I_Identidad;
+      _txtTipoidentidad.value = data.Tipo_I_Identidad;
+      _txtTelefonoPut.value = data.Telefono;
+      _txtDomicilio.value = data.Domiclio;
+      _txtIdPuesto.value = data.Idpuesto;
+    },
+  });
+}
+
+//FUNCION SELECT POR ID EN PUT
+
+function selectIDPut() {
+  fetch("http://localhost:53498/api/Empleado")
+    .then((response) => response.json())
+    .then((data) => {
+      const _select = document.getElementById("txtIDPut");
+      data.forEach((o) => {
+        let _option = `<option value="${o.Idempleado}">${o.Idempleado}</option>`;
+
+        _select.innerHTML += _option;
+      });
+    });
+}
+
+//FUNCION VALIDAR CAMPOS EN PUT
+
+function validarPut() {
+  const _txtIDPut = document.getElementById("txtIDPut");
+  const _txtApellidoPut = document.getElementById("txtApellidoPut");
+  const _txtNombrePut = document.getElementById("txtNombrePut");
+  const _txtIdentidadPut = document.getElementById("txtIdentidadPut");
+  const _txtTipoIdentidadPut = document.getElementById("txtTipoIdentidadPut");
+  const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
+  const _txtDomicilioPut = document.getElementById("txtDomicilioPut");
+  const _txtPuestoPut = document.getElementById("txtPuestoPut");
+  // const _txtFeAltaPut = document.getElementById("txtFeAltaPut");
+  // const _txtFeOperacionPut = document.getElementById("txtFeOperacionPut");
+  // const _txtDescripcionPut = document.getElementById("txtDescripcionPut");
+  // const _txtActivoPut = document.getElementById("txtActivoPut");
+
+  if (
+    _txtIDPut.value === "" ||
+    _txtApellidoPut.value === "" ||
+    _txtNombrePut.value === "" ||
+    _txtIdentidadPut.value === "" ||
+    _txtTipoIdentidadPut.value === "" ||
+    _txtTelefonoPut.value === "" ||
+    _txtDomicilioPut.value === "" ||
+    _txtPuestoPut.value === ""
+  ) {
+    alert("Por favor, complete todos los campos obligatorios.");
+    return false;
+  } else {
+    return put(obj);
+  }
+}
+
 //FUNCION POST
 
 function post(obj) {
-  const _txtIDPost = document.getElementById("txtIDPost");
   const _txtApellidoPost = document.getElementById("txtApellidoPost");
   const _txtNombrePost = document.getElementById("txtNombrePost");
   const _txtIdentidadPost = document.getElementById("txtIdentidadPost");
   const _txtTipoidentidadPost = document.getElementById("txtTipoidentidadPost");
-  const _txtTelefonoPost = document.getElementById("txtTelefonoPostPost");
+  const _txtTelefonoPost = document.getElementById("txtTelefonoPost");
   const _txtDomicilioPost = document.getElementById("txtDomicilioPost");
   const _txtIdPuestoPost = document.getElementById("txtIdPuestoPost");
   // const _txtFeAltaPost = document.getElementById("txtFeAltaPost");
@@ -138,9 +226,7 @@ function post(obj) {
   // const _txtDescripcionOpPost = document.getElementById("txtDescripcionOpPost");
   // const _txtActivoPost = document.getElementById("txtActivoPost");
 
-
   obj = {
-    Idempleado: _txtIDPost.value,
     Apellido: _txtApellidoPost.value,
     Nombre: _txtNombrePost.value,
     I_Identidad: _txtIdentidadPost.value,
@@ -152,8 +238,6 @@ function post(obj) {
     // Fecha_Operacion: _txtFeOperacionPost.value,
     // Descripcion_Operacion: _txtDescripcionOpPost.value,
     // Activo: _txtActivoPost.value,
-
-
   };
   $.ajax({
     type: "POST",
@@ -179,6 +263,37 @@ function post(obj) {
       alert(error);
     },
   });
+}
+
+//FUNCION VALIDAR CAMPOS EN POST
+
+function validarPost() {
+  const txtApellido = document.getElementById("txtApellidoPost");
+  const txtNombre = document.getElementById("txtNombrePost");
+  const txtIdentidadPost = document.getElementById("txtIdentidadPost");
+  const txtTipoidentidadPost = document.getElementById("txtTipoidentidadPost");
+  const txtTelefono = document.getElementById("txtTelefonoPost");
+  const txtDomicilioPost = document.getElementById("txtDomicilioPost");
+  const txtIdPuestoPost = document.getElementById("txtIdPuestoPost");
+  // const txtFeAltaPost=document.getElementById("txtFeAltaPost");
+  // const txtFeOperacionPost=document.getElementById("txtFeOperacionPost");
+  // const txtDescripcionOpPost=document.getElementById("txtDescripcionOpPost");
+  // const txtActivoPost=document.getElementById("txtActivoPost");
+
+  if (
+    txtApellido.value === "" ||
+    txtNombre.value === "" ||
+    txtIdentidadPost.value === "" ||
+    txtTipoidentidadPost.value === "" ||
+    txtTelefono.value === "" ||
+    txtDomicilioPost.value === "" ||
+    txtIdPuestoPost.value === ""
+  ) {
+    alert("Por favor, complete todos los campos obligatorios.");
+    return false;
+  } else {
+    return post(obj);
+  }
 }
 
 //FUNCION DELETE
@@ -221,8 +336,12 @@ function buscarDelete(id) {
     success: function (data) {
       const txtApellidoDelete = document.getElementById("txtApellidoDelete");
       const txtNombreDelete = document.getElementById("txtNombreDelete");
-      const txtIndentidadDelete = document.getElementById("txtIndentidadDelete");
-      const txtTipoIdentidadDelete = document.getElementById("txtTipoIdentidadDelete");
+      const txtIndentidadDelete = document.getElementById(
+        "txtIndentidadDelete"
+      );
+      const txtTipoIdentidadDelete = document.getElementById(
+        "txtTipoIdentidadDelete"
+      );
       const txtTelefonoDelete = document.getElementById("txtTelefonoDelete");
       const txtDomicilioDelete = document.getElementById("txtDomicilioDelete");
       const txtPuestoDelete = document.getElementById("txtPuestoDelete");
@@ -230,8 +349,6 @@ function buscarDelete(id) {
       // const txtFeOpeDelete = document.getElementById("txtFeOpeDelete");
       // const txtDescripcionDelete = document.getElementById("txtDescripcionDelete");
       // const txtActivo = document.getElementById("txtActivo");
-
-
 
       txtNombreDelete.value = data.Nombre;
       txtApellidoDelete.value = data.Apellido;
@@ -244,74 +361,8 @@ function buscarDelete(id) {
       // txtFeOpeDelete.value = data.Fecha_Operacion;
       // txtDescripcionDelete.value = data.Descripcion_Operacion;
       // txtActivo.value = data.Activo;
-
-
-
-
-
     },
   });
-}
-
-//FUNCION BUSCAR POR ID EN PUT
-
-function buscarPut(id) {
-  const txtIDPut = document.getElementById("txtIDPut");
-  id = txtIDPut.value;
-
-  $.ajax({
-    type: "GET",
-    dataType: "json",
-    url: "http://localhost:53498/api/Empleado/" + id,
-    success: function (data) {
-      const _txtIDPut = document.getElementById("txtIDPut");
-      const _txtApellidoPut = document.getElementById("txtApellidoPut");
-      const _txtNombrePut = document.getElementById("txtNombrePut");
-      const _txtIdentidad = document.getElementById("txtIdentidad");
-      const _txtTipoidentidad = document.getElementById("txtTipoidentidad");
-      const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
-      const _txtDomicilio = document.getElementById("txtDomicilio");
-      const _txtIdPuesto = document.getElementById("txtIdPuesto");
-
-      _txtApellidoPut.value = data.Apellido;
-      _txtNombrePut.value = data.Nombre;
-      _txtIdentidad.value = data.I_Identidad;
-      _txtTipoidentidad.value = data.Tipo_I_Identidad;
-      _txtTelefonoPut.value = data.Telefono;
-      _txtDomicilio.value = data.Domiclio;
-      _txtIdPuesto.value = data.Idpuesto;
-    },
-  });
-}
-
-//FUNCION SELECT POR ID
-
-function selectID() {
-  fetch("http://localhost:53498/api/Empleado")
-    .then((response) => response.json())
-    .then((data) => {
-      const _select = document.getElementById("txtID");
-      data.forEach((o) => {
-        let _option = `<option value="${o.Idempleado}">${o.Idempleado}</option>`;
-
-        _select.innerHTML += _option;
-      });
-    });
-}
-
-//FUNCION SELECT POR ID EN PUT
-
-function selectIDPut() {
-  fetch("http://localhost:53498/api/Empleado")
-    .then((response) => response.json())
-    .then((data) => {
-      const _select = document.getElementById("txtIDPut");
-      data.forEach((o) => {
-        let _option = `<option value="${o.Idempleado}">${o.Idempleado}</option>`;
-
-        _select.innerHTML += _option;
-      });
-    });
 }
 
 //FUNCION SELECT POR ID EN DELETE
@@ -327,56 +378,4 @@ function selectIDDelete() {
         _select.innerHTML += _option;
       });
     });
-}
-
-//FUNCION VALIDAR CAMPOS EN POST
-
-function validarPost() {
-  const txtApellido = document.getElementById("txtApellidoPost");
-  const txtNombre = document.getElementById("txtNombrePost");
-  const txtIdentidadPost = document.getElementById("txtIdentidadPost");
-  const txtTipoidentidadPost = document.getElementById("txtTipoidentidadPost");
-  const txtTelefono = document.getElementById("txtTelefonoPost");
-  const txtDomicilioPost = document.getElementById("txtDomicilioPost");
-  const txtIdPuestoPost = document.getElementById("txtIdPuestoPost");
-  // const txtFeAltaPost=document.getElementById("txtFeAltaPost");
-  // const txtFeOperacionPost=document.getElementById("txtFeOperacionPost");
-  // const txtDescripcionOpPost=document.getElementById("txtDescripcionOpPost");
-  // const txtActivoPost=document.getElementById("txtActivoPost");
-
-  if (txtApellido.value === "" || txtNombre.value === "" || txtIdentidadPost.value === "" || txtTipoidentidadPost.value === "" || txtTelefono.value === "" || txtDomicilioPost.value === "" || txtIdPuestoPost.value === "" || txtFeAltaPost.value === "" || txtFeOperacionPost.value === "" || txtDescripcionOpPost === "" || txtActivoPost.value === "") {
-    alert("Por favor, complete todos los campos obligatorios.");
-    return false;
-  }
-
-  else {
-    return post(obj);
-  }
-}
-
-//FUNCION VALIDAR CAMPOS EN PUT
-
-function validarPut() {
-  const _txtIDPut = document.getElementById("txtIDPut");
-  const _txtApellidoPut = document.getElementById("txtApellidoPut");
-  const _txtNombrePut = document.getElementById("txtNombrePut");
-  const _txtIdentidadPut = document.getElementById("txtIdentidadPut");
-  const _txtTipoIdentidadPut = document.getElementById("txtTipoIdentidadPut");
-  const _txtTelefonoPut = document.getElementById("txtTelefonoPut");
-  const _txtDomicilioPut = document.getElementById("txtDomicilioPut");
-  const _txtPuestoPut = document.getElementById("txtPuesto");
-  // const _txtFeAltaPut = document.getElementById("txtFeAltaPut");
-  // const _txtFeOperacionPut = document.getElementById("txtFeOperacionPut");
-  // const _txtDescripcionPut = document.getElementById("txtDescripcionPut");
-  // const _txtActivoPut = document.getElementById("txtActivoPut");
-
-  if (_txtIDPut.value === "" || _txtApellidoPut.value === "" || _txtNombrePut.value === "" || _txtIdentidadPut.value === "" ||
-    _txtTipoIdentidadPut.value === "" || _txtTipoIdentidadPut.value === "" || _txtTelefonoPut.value === "" || _txtDomicilioPut.value === "" || _txtPuestoPut.value === "") {
-    alert("Por favor, complete todos los campos obligatorios.");
-    return false;
-  }
-
-  else {
-    return put(obj);
-  }
 }

@@ -182,9 +182,11 @@ let idEliminar = "";
 
 function eliminar(idEliminar) {
   const _txtIDEliminar = document.getElementById("txtIDEliminar");
+  const txtMarcaDelete = document.getElementById("txtMarcaDelete");
 
   idEliminar = {
     id: _txtIDEliminar.value,
+    nombremarca: txtMarcaDelete.value,
   };
 
   $.ajax({
@@ -195,6 +197,7 @@ function eliminar(idEliminar) {
     success: function (data) {
       alert("DELETE OK!");
       _txtIDEliminar.value = "";
+      txtMarcaDelete.value = "";
       _txtIDEliminar.focus();
     },
     error: function (error) {
